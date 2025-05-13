@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset dasar */
+* {
+  @apply m-0 p-0 box-border;
+}
+
+html,
+body {
+  @apply h-full;
+}
+
+/* Container */
+.signup-container {
+  @apply bg-black text-white max-w-[1360px] mx-auto p-5 flex flex-col min-h-screen justify-between items-center;
+}
+
+/* Header */
+.signup-header {
+  @apply mb-10;
+}
+
+.signup-logo {
+  @apply text-2xl font-bold italic text-white font-poppins text-center;
+}
+
+.signup-title {
+  @apply text-4xl text-white font-poppins text-center;
+}
+
+/* Main Form Area */
+.signup-main {
+  @apply w-full max-w-[600px];
+}
+
+.signup-form {
+  @apply flex flex-col gap-5 items-center w-full;
+}
+
+.signup-field {
+  @apply flex flex-col gap-2 w-full items-start max-w-[400px] relative;
+}
+
+.signup-label {
+  @apply text-white text-xl font-poppins;
+}
+
+.signup-input {
+  @apply p-3 text-lg rounded bg-white text-black border-none w-full max-w-[400px];
+}
+
+/* Password toggle icon */
+.signup-toggle {
+  @apply absolute right-3 top-11 text-black cursor-pointer;
+}
+
+/* Button */
+.signup-button {
+  @apply p-3 text-xl bg-gradient-to-r from-indigo-800 to-gray-900 text-white rounded cursor-pointer hover:brightness-110 transition w-full max-w-[400px];
+}
+
+/* Footer */
+.signup-footer {
+  @apply mt-auto text-center py-2 bg-black/90 w-full;
+}
+
+.signup-copyright {
+  @apply text-sm text-white font-poppins;
+}
