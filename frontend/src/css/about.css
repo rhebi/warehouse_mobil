@@ -40,8 +40,8 @@ body {
   @apply flex items-center gap-2 text-white;
 }
 
-.about-manager span {
-  @apply hidden;
+.about span.role-text {
+  @apply inline-block; /* Biar teks role tetap muncul */
 }
 
 .about-manager-icon {

@@ -23,21 +23,17 @@
   @apply flex items-center gap-2;
 }
 
-.manager-link {
-  @apply flex items-center gap-2 text-white;
-}
-
-.manager span {
-  @apply hidden;
+.manager span.role-text {
+  @apply inline-block; /* Biar teks role tetap muncul */
 }
 
 .manager-icon {
-  @apply w-[30px] h-[30px];
+  @apply w-10 h-10;
 }
 
 /* Main Container */
 .main-container {
-  @apply flex flex-col min-h-screen; 
+  @apply flex flex-col min-h-screen;
 }
 
 /* Hero Section */
@@ -63,9 +59,7 @@
 
 /* Footer */
 .footer {
-  @apply bg-black/90 text-center py-2; 
-  @apply fixed bottom-0 left-0 w-full; 
-  @apply z-10; 
+  @apply bg-black/90 text-center py-2 fixed bottom-0 left-0 w-full z-10;
 }
 
 .copyright {

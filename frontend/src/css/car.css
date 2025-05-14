@@ -32,6 +32,11 @@
   @apply flex items-center gap-2 text-white no-underline;
 }
 
+.car span.role-text {
+  @apply inline-block; /* Biar teks role tetap muncul */
+}
+
+
 .car-manager-icon {
   @apply w-[30px] h-[30px];
 }

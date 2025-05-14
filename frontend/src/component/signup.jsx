@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/signup.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -7,12 +7,41 @@ const Signup = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
+  // References for input fields
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const roleRef = useRef(null); // New ref for role selection
+
+  // Redirect to Home after form submission
   useEffect(() => {
     const button = document.querySelector('.signup-button');
 
     const handleRedirect = (e) => {
-      e.preventDefault(); // Cegah reload
-      navigate('/home');
+      e.preventDefault(); // Prevent default form submission
+
+      // Get values from input fields
+      const name = nameRef.current.value.trim();
+      const email = emailRef.current.value.trim();
+      const password = passwordRef.current.value.trim();
+      const role = roleRef.current.value; // Get selected role
+
+      // Validate inputs
+      if (!name || !email || !password || !role) {
+        alert('Semua kolom wajib diisi.');
+        return;
+      }
+
+      // Save user info including role in localStorage
+      const userData = {
+        name,
+        email,
+        role
+      };
+      localStorage.setItem('user', JSON.stringify(userData));
+
+      // Go to Home page
+      navigate('/');
     };
 
     button?.addEventListener('click', handleRedirect);
@@ -41,6 +70,7 @@ const Signup = () => {
               className="signup-input"
               aria-label="Your Name"
               required
+              ref={nameRef}
             />
           </div>
 
@@ -54,6 +84,7 @@ const Signup = () => {
               className="signup-input"
               aria-label="Your Email"
               required
+              ref={emailRef}
             />
           </div>
 
@@ -67,6 +98,7 @@ const Signup = () => {
               className="signup-input pr-10"
               aria-label="Your Password"
               required
+              ref={passwordRef}
             />
             <span
               className="signup-toggle"
@@ -75,6 +107,20 @@ const Signup = () => {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
+          </div>
+
+          {/* Role Selection */}
+          <div className="signup-field">
+            <label htmlFor="role" className="signup-label">Role</label>
+            <select
+              id="role"
+              className="signup-input"
+              defaultValue="staff"
+              ref={roleRef} // Add ref here
+            >
+              <option value="staff">Staff</option>
+              <option value="manager">Manager</option>
+            </select>
           </div>
 
           {/* Submit Button */}
