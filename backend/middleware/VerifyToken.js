@@ -10,6 +10,7 @@ export const verifytoken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ msg: "Token tidak valid atau expired" });
     }
+    console.log("Decoded JWT:", decoded);
     req.user = {
       userId: decoded.userId,
       email: decoded.email,

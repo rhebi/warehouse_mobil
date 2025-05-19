@@ -1,24 +1,33 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './index.css';
-import Home from "./component/home.jsx";
-import Signup from "./component/signup.jsx";
-import About from "./component/about.jsx";
-import Car from "./component/car.jsx";
-import Contact from "./component/contact.jsx";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/home.jsx";
+import Signup from "./pages/signup.jsx";
+import About from "./pages/about.jsx";
+import Car from "./pages/car.jsx";
+import Contact from "./pages/contact.jsx";
+import Login from "./pages/login.jsx";
+import LayoutHeader from "./component/LayoutHeader.jsx";
+import Dashboard from "./pages/dashboard.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
+      {/* Routes dengan header */}
+      <Route element={<LayoutHeader />}>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
         <Route path="/about" element={<About />} />
         <Route path="/car" element={<Car />} />
         <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </BrowserRouter>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
+
+      {/* Routes tanpa header */}
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+
+      {/* Redirect selain itu */}
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 
 export default App;
-

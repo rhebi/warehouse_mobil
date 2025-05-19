@@ -1,3 +1,4 @@
+### Login
 ### — 1) REGISTER USER (kalo user ngga milih role, otomatis jadi staff)
 POST http://localhost:5000/users
 Content-Type: application/json
@@ -7,7 +8,7 @@ Content-Type: application/json
   "email": "dedi21@gmail.com",
   "password": "123456",
   "confpassword": "123456",
-  "role": "manager"
+  "role": "manager" 
 }
 
 ### — 2) LOGIN (dapat accessToken & refreshToken cookie)
@@ -15,8 +16,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-  "email": "dedi21@gmail.com",
-  "password": "123456"
+  "email": "fajar.manager@gmail.com",
+  "password": "admin123"
 }
 
 ### — 3) REFRESH TOKEN (ambil accessToken baru)
@@ -27,43 +28,48 @@ DELETE http://localhost:5000/logout
 
 ### — 5) GET ALL USERS (hanya user yang sudah login)
 GET http://localhost:5000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJuYW1lIjoiamFqYW5nIiwiZW1haWwiOiJqYWphbmdAZ21haWwuY29tIiwicm9sZSI6InN0YWZmIiwiaWF0IjoxNzQ2MzczNzk2LCJleHAiOjE3NDYzNzM4NDF9.KKGA4D7vbNb7bw-e1EYR1X-jgty8vurvROtTtBlOSEk
-### — 6) GET ALL PRODUCTS (login required)
+Authorization: Bearer 
+### — 6) GET ME (ambil data user yang sedang login)
+GET http://localhost:5000/me
+Authorization: Bearer
+
+### CRUD
+### — 1) GET ALL PRODUCTS (login required)
 GET http://localhost:5000/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJuYW1lIjoiamFqYW5nIiwiZW1haWwiOiJqYWphbmdAZ21haWwuY29tIiwicm9sZSI6InN0YWZmIiwiaWF0IjoxNzQ2MzczNzk2LCJleHAiOjE3NDYzNzM4NDF9.KKGA4D7vbNb7bw-e1EYR1X-jgty8vurvROtTtBlOSEk
+Authorization: Bearer 
 
-### — 7) GET PRODUCT BY ID
-GET http://localhost:5000/products/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJuYW1lIjoicm9obWFuIiwiZW1haWwiOiJyb2htYW5AZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDYzNzM1NjksImV4cCI6MTc0NjM3NzE2OX0.RtlaBqhRZV6QtZxkdZAREDo41Cmj-mNgDlMvZeqORSI
+### — 2) GET PRODUCT BY ID
+GET http://localhost:5000/products/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2NzI5ODYsImV4cCI6MTc0NzY3Mzg4Nn0.7j8EKWiUaIlNuJ7FbDjbZCA76vOYnaTnkzEd4x8H4Js
 
-### — 8) CREATE PRODUCT (manager only)
+### — 3) CREATE PRODUCT (manager only)
 POST http://localhost:5000/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJuYW1lIjoiZGVkaSBtdXNhZmlyIiwiZW1haWwiOiJkZWRpMjFAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDYzNzM5OTYsImV4cCI6MTc0NjM3NDA0MX0.N2DsVOJQ3RJWJn2XzEK5-aZGqOOF5Xzg_9OtNEitp_g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2Njg5NzgsImV4cCI6MTc0NzY2OTg3OH0.IbehqRlJB0MNOOxQGFymtc40tJn_wc_LJJFV82fBees
 Content-Type: application/json
 
 {
-  "name": "Bugatti Chiron",
-  "model": "spotify mantap Sport",
-  "price": 3000000,
-  "imageUrl": "https://link.to/bugatti.jpg",
+  "name": "Bugatti divo",
+  "model": "pur card",
+  "price": 13000000,
+  "imageName": "divo.jpg",
   "description": "Mahakarya kecepatan absolut.",
   "stock": 5
 }
 
-### — 9) UPDATE PRODUCT (manager only)
-PATCH  http://localhost:5000/products/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJuYW1lIjoicm9obWFuIiwiZW1haWwiOiJyb2htYW5AZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDYzNzM1NjksImV4cCI6MTc0NjM3NzE2OX0.RtlaBqhRZV6QtZxkdZAREDo41Cmj-mNgDlMvZeqORSI
+### — 4) UPDATE PRODUCT (manager only)
+PATCH  http://localhost:5000/products/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2NzI5ODYsImV4cCI6MTc0NzY3Mzg4Nn0.7j8EKWiUaIlNuJ7FbDjbZCA76vOYnaTnkzEd4x8H4Js
 Content-Type: application/json
 
 {
-  "name": "Bugatti Chiron",
-  "model": "Pur Sport",
-  "price": 3200000,
-  "imageUrl": "https://link.to/bugatti-new.jpg",
+  "name": "Bugatti Bolide",
+  "model": "luxury Sport",
+  "price": 3250000,
+  "imageName": "bolide.jpg",
   "description": "Versi terbaru dengan performa ditingkatkan.",
   "stock": 3
 }
 
-### — 10) DELETE PRODUCT (manager only)
-DELETE http://localhost:5000/products/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI2LCJuYW1lIjoiZGVkaSBtdXNhZmlyIiwiZW1haWwiOiJkZWRpMjFAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDYzNzM5OTYsImV4cCI6MTc0NjM3NDA0MX0.N2DsVOJQ3RJWJn2XzEK5-aZGqOOF5Xzg_9OtNEitp_g
+### — 5) DELETE PRODUCT (manager only)
+DELETE http://localhost:5000/products/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2NzI5ODYsImV4cCI6MTc0NzY3Mzg4Nn0.7j8EKWiUaIlNuJ7FbDjbZCA76vOYnaTnkzEd4x8H4Js

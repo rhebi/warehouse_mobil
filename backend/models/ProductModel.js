@@ -14,7 +14,7 @@ const Product = db.define("products", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  imageUrl: {
+  imageName: {
     type: DataTypes.STRING,
     allowNull: true
   },

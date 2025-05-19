@@ -14,7 +14,7 @@ const startServer = async () => {
   try {
     await db.authenticate();
     console.log("Database Connected...");
-    await db.sync({ alter: true });
+    // await db.sync({ alter: true });
   } catch (error) {
     console.error("DB init error:", error);
   }
