@@ -40,11 +40,11 @@ Authorization: Bearer
 
 ### — 2) GET PRODUCT BY ID
 GET http://localhost:5000/products/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2NzI5ODYsImV4cCI6MTc0NzY3Mzg4Nn0.7j8EKWiUaIlNuJ7FbDjbZCA76vOYnaTnkzEd4x8H4Js
+Authorization: Bearer 
 
 ### — 3) CREATE PRODUCT (manager only)
 POST http://localhost:5000/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2Njg5NzgsImV4cCI6MTc0NzY2OTg3OH0.IbehqRlJB0MNOOxQGFymtc40tJn_wc_LJJFV82fBees
+Authorization: Bearer 
 Content-Type: application/json
 
 {
@@ -58,7 +58,7 @@ Content-Type: application/json
 
 ### — 4) UPDATE PRODUCT (manager only)
 PATCH  http://localhost:5000/products/5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2NzI5ODYsImV4cCI6MTc0NzY3Mzg4Nn0.7j8EKWiUaIlNuJ7FbDjbZCA76vOYnaTnkzEd4x8H4Js
+Authorization: Bearer 
 Content-Type: application/json
 
 {
@@ -72,4 +72,4 @@ Content-Type: application/json
 
 ### — 5) DELETE PRODUCT (manager only)
 DELETE http://localhost:5000/products/6
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ3LCJuYW1lIjoiZmFqYXIiLCJlbWFpbCI6ImZhamFyLm1hbmFnZXJAZ21haWwuY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3NDc2NzI5ODYsImV4cCI6MTc0NzY3Mzg4Nn0.7j8EKWiUaIlNuJ7FbDjbZCA76vOYnaTnkzEd4x8H4Js
+Authorization: Bearer 

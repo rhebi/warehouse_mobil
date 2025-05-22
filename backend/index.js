@@ -21,7 +21,7 @@ const startServer = async () => {
 
   app.use(cors({
     credentials: true,
-    origin: ['http://localhost:3000', 'http://localhost:5173']
+    origin: ['http://localhost:5000', 'http://localhost:5173']
   }));
   app.use(express.json());
   app.use(cookieParser());

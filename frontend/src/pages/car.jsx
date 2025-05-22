@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
+import "../css/car.css";
 
 const Car = () => {
   const [cars, setCars] = useState([]);

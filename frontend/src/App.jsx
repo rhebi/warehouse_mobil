@@ -6,7 +6,7 @@ import Car from "./pages/car.jsx";
 import Contact from "./pages/contact.jsx";
 import Login from "./pages/login.jsx";
 import LayoutHeader from "./component/LayoutHeader.jsx";
-import Dashboard from "./pages/dashboard.jsx";
+import Dashboard from "./pages/dashboard_manager.jsx";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/car" element={<Car />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboardManager" element={<Dashboard />} />
       </Route>
 
       {/* Routes tanpa header */}

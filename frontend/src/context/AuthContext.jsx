@@ -4,7 +4,7 @@ import axios from "../api/axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // null berarti belum login
+  const [user, setUser] = useState(null); 
 
   const getNewAccessToken = async () => {
     try {
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const getUser = async () => {
     try {
-      const token = await getNewAccessToken(); // Ambil token dulu
+      const token = await getNewAccessToken(); 
       if (!token) {
         setUser(null);
         return;
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getUser(); // Jalankan saat pertama kali load
+    getUser(); 
   }, []);
 
   return (
