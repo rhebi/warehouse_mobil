@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import { useAuth } from "../context/AuthContext";
-import "../css/dashboard_manager.css"
+import "../css/dashboard.css"
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -133,7 +133,7 @@ const Dashboard = () => {
       </div>
 
       <footer className="dashboard-footer">
-        &copy; {new Date().getFullYear()} Ronaldo Luxury Car
+        &copy; {new Date().getFullYear()} 2025 Ronaldo Luxury Car
       </footer>
     </div>
   );

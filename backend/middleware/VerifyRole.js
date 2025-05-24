@@ -1,5 +1,3 @@
-// middleware/VerifyRole.js
-
 export const isManager = (req, res, next) => {
   const userRole = req.user.role;
   if (userRole !== "manager") {
@@ -14,4 +12,13 @@ export const isStaff = (req, res, next) => {
     return res.status(403).json({ msg: "Akses hanya untuk staff" });
   }
   next();
+};
+
+export const isManagerOrStaff = (req, res, next) => {
+  const userRole = req.user.role;
+  if (userRole === "manager" || userRole === "staff") {
+    next();
+  } else {
+    return res.status(403).json({ msg: "Akses hanya untuk staff atau manager" });
+  }
 };

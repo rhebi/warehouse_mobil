@@ -89,7 +89,7 @@ const Login = () => {
 
       <footer className="login-footer">
         <p className="login-copyright">
-          &copy; {new Date().getFullYear()} Ronaldo Luxury Car
+          &copy; {new Date().getFullYear()} 2025 Ronaldo Luxury Car
         </p>
       </footer>
     </div>

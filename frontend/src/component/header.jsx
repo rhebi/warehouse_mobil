@@ -35,6 +35,9 @@ const Header = () => {
         {user && user.role === "staff" && (
           <Link to="/dashboardStaff" className="hover:underline">Dashboard</Link>
         )}
+        {user && (user.role === "manager" || user.role === "staff") && (
+          <Link to="/transaction" className="hover:underline">Transaction</Link>
+        )}
       </nav>
 
       <div>

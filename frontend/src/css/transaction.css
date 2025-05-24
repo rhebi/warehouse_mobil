@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Container dan Title */
+.transaction-container {
+  @apply p-6 max-w-6xl mx-auto bg-gray-900 min-h-screen text-white;
+}
+
+.transaction-title {
+  @apply text-3xl font-bold mb-6 text-center;
+}
+
+.transaction-error {
+  @apply text-red-500 mb-4;
+}
+
+/* Table Style */
+.transaction-table {
+  @apply min-w-full text-sm border border-gray-700 rounded-md overflow-hidden;
+}
+
+.transaction-table-header {
+  @apply bg-gray-800 text-white;
+}
+
+.transaction-table th,
+.transaction-table td {
+  @apply px-4 py-2 border-b border-gray-700;
+}
+
+.transaction-row {
+  @apply hover:bg-gray-700 text-white transition;
+}
+
+.transaction-empty {
+  @apply text-center py-4 text-gray-300;
+}
+
+/* Tombol Edit & Delete */
+.transaction-actions {
+  @apply space-x-2;
+}
+
+.btn-edit {
+  @apply bg-blue-600 text-white rounded-md px-3 py-1 hover:bg-blue-700 transition;
+}
+
+.btn-delete {
+  @apply bg-red-600 text-white rounded-md px-3 py-1 hover:bg-red-700 transition;
+}
+
+/* Footer */
+.transaction-footer {
+  @apply mt-10 text-center text-gray-400 text-sm border-t border-gray-700 pt-4;
+}

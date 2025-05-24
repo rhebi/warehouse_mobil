@@ -16,8 +16,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-  "email": "fajar.manager@gmail.com",
-  "password": "admin123"
+  "email": "rusli22@gmail.com",
+  "password": "2424"
 }
 
 ### — 3) REFRESH TOKEN (ambil accessToken baru)
@@ -39,7 +39,7 @@ GET http://localhost:5000/products
 Authorization: Bearer 
 
 ### — 2) GET PRODUCT BY ID
-GET http://localhost:5000/products/5
+GET http://localhost:5000/products/2
 Authorization: Bearer 
 
 ### — 3) CREATE PRODUCT (manager only)
@@ -72,4 +72,41 @@ Content-Type: application/json
 
 ### — 5) DELETE PRODUCT (manager only)
 DELETE http://localhost:5000/products/6
+Authorization: Bearer 
+
+### TRANSACTIONS
+### — 1) GET ALL TRANSACTIONS (login required)
+GET http://localhost:5000/transactions
+Authorization: Bearer 
+
+### — 2) GET TRANSACTION BY ID (login required)
+GET http://localhost:5000/transactions/1
+Authorization: Bearer 
+
+### — 3) CREATE TRANSACTION (login required)
+POST http://localhost:5000/transactions
+Authorization: Bearer 
+Content-Type: application/json
+
+{
+  "transaction_code": "TRX001",
+  "buyer_name": "Pak Budi",
+  "product_id": 2,
+  "quantity": 2,
+  "total_price": 26000000
+}
+
+### — 4) UPDATE TRANSACTION (login required)
+PATCH http://localhost:5000/transactions/1
+Authorization: Bearer 
+Content-Type: application/json
+
+{
+  "buyer_name": "Ibu Sari",
+  "quantity": 1,
+  "total_price": 13000000
+}
+
+### — 5) DELETE TRANSACTION (login required)
+DELETE http://localhost:5000/transactions/2
 Authorization: Bearer 
