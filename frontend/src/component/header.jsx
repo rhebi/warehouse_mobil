@@ -29,7 +29,12 @@ const Header = () => {
         <Link to="/car" className="hover:underline">Our Cars</Link>
         <Link to="/about" className="hover:underline">About</Link>
         <Link to="/contact" className="hover:underline">Contact</Link>
-        <Link to="/dashboardManager" className="hover:underline">Dashboard</Link>
+        {user && user.role === "manager" && (
+          <Link to="/dashboardManager" className="hover:underline">Dashboard</Link>
+        )}
+        {user && user.role === "staff" && (
+          <Link to="/dashboardStaff" className="hover:underline">Dashboard</Link>
+        )}
       </nav>
 
       <div>

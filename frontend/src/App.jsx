@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext"; // tambahkan ini
 import Home from "./pages/home.jsx";
 import Signup from "./pages/signup.jsx";
 import About from "./pages/about.jsx";
@@ -7,8 +8,11 @@ import Contact from "./pages/contact.jsx";
 import Login from "./pages/login.jsx";
 import LayoutHeader from "./component/LayoutHeader.jsx";
 import Dashboard from "./pages/dashboard_manager.jsx";
+import DashboardStaff from "./pages/dashboard_staff.jsx";
 
 function App() {
+  const { user } = useAuth(); // tambahkan ini
+
   return (
     <Routes>
       {/* Routes dengan header */}
@@ -17,7 +21,28 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/car" element={<Car />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/dashboardManager" element={<Dashboard />} />
+        
+        {/* Proteksi berdasarkan role */}
+        <Route
+          path="/dashboardManager"
+          element={
+            user && user.role === "manager" ? (
+              <Dashboard />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route
+          path="/dashboardStaff"
+          element={
+            user && user.role === "staff" ? (
+              <DashboardStaff />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
       </Route>
 
       {/* Routes tanpa header */}

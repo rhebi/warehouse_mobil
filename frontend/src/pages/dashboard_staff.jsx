@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import { useAuth } from "../context/AuthContext";
-import "../css/dashboard_manager.css"
+import "../css/dashboard_manager.css";
 
-const Dashboard = () => {
+const DashboardStaff = () => {
   const { user } = useAuth();
   const [cars, setCars] = useState([]);
   const [form, setForm] = useState({
@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
-    if (user?.role === 'manager') {
+    if (user?.role === 'staff') {
       fetchCars();
     }
   }, [user]);
@@ -35,14 +35,30 @@ const Dashboard = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    try {
-      if (editingId) {
-        await axios.patch(`/products/${editingId}`, form, { withCredentials: true });
-      } else {
-        await axios.post('/products', form, { withCredentials: true });
+
+    if (user.role === 'staff') {
+      // Validasi: pastikan stock angka
+      if (isNaN(Number(form.stock))) {
+        alert("Stock harus berupa angka.");
+        return;
       }
+    }
+
+    try {
+      let payload = {};
+
+      if (user.role === 'staff') {
+        payload = {
+          stock: Number(form.stock), // pastikan dikirim sebagai angka
+        };
+      } else {
+        payload = { ...form };
+      }
+
+      await axios.patch(`/products/${editingId}`, payload, { withCredentials: true });
+
       setForm({
         name: '',
         model: '',
@@ -54,7 +70,7 @@ const Dashboard = () => {
       setEditingId(null);
       fetchCars();
     } catch (error) {
-      console.error('Error saving car:', error);
+      console.error('Error updating car:', error);
     }
   };
 
@@ -82,37 +98,28 @@ const Dashboard = () => {
     });
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`/products/${id}`, { withCredentials: true });
-      fetchCars();
-    } catch (error) {
-      console.error('Error deleting car:', error);
-    }
-  };
-
   if (!user) return <p>Loading...</p>;
-  if (user.role !== 'manager') return <p>Akses ditolak. Halaman ini hanya untuk manajer.</p>;
+  if (user.role !== 'staff') return <p>Akses ditolak. Halaman ini hanya untuk staf.</p>;
 
   return (
     <div className="dashboard-container">
-      <form onSubmit={handleSubmit} className="add-car-form">
-        <h2>{editingId ? 'Edit Mobil' : 'Tambah Mobil'}</h2>
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Nama Mobil" required />
-        <input name="model" value={form.model} onChange={handleChange} placeholder="Model Mobil" required />
-        <input name="price" value={form.price} onChange={handleChange} placeholder="Harga" type="number" required />
-        <input name="description" value={form.description} onChange={handleChange} placeholder="Deskripsi" required />
-        <input name="imageName" value={form.imageName} onChange={handleChange} placeholder="Nama Gambar" required />
-        <input name="stock" value={form.stock} onChange={handleChange} placeholder="Stock Mobil" type="number" required />
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <button type="submit">{editingId ? 'Update' : 'Tambah'} Mobil</button>
-          {editingId && (
+      {editingId && (
+        <form onSubmit={handleUpdate} className="add-car-form">
+          <h2>Edit Mobil</h2>
+          <input name="name" value={form.name} onChange={handleChange} placeholder="Nama Mobil" required />
+          <input name="model" value={form.model} onChange={handleChange} placeholder="Model Mobil" required />
+          <input name="price" value={form.price} onChange={handleChange} placeholder="Harga" type="number" required />
+          <input name="description" value={form.description} onChange={handleChange} placeholder="Deskripsi" required />
+          <input name="imageName" value={form.imageName} onChange={handleChange} placeholder="Nama Gambar" required />
+          <input name="stock" value={form.stock} onChange={handleChange} placeholder="Stock Mobil" type="number" required />
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button type="submit">Update Mobil</button>
             <button type="button" onClick={handleCancelEdit} style={{ backgroundColor: '#e11d48', color: 'white' }}>
               Batal Edit
             </button>
-          )}
-        </div>
-      </form>
+          </div>
+        </form>
+      )}
 
       <div className="card-list">
         {cars.map((car) => (
@@ -126,7 +133,7 @@ const Dashboard = () => {
             </div>
             <div className="card-actions">
               <button onClick={() => handleEdit(car)}>Edit</button>
-              <button onClick={() => handleDelete(car.id)}>Hapus</button>
+              {/* Tidak ada tombol Hapus */}
             </div>
           </div>
         ))}
@@ -139,4 +146,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardStaff;

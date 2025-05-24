@@ -1,7 +1,7 @@
 import express from "express";
 import { getUser, Register, Login, Logout, getMe } from "../controllers/User.js";
 import { verifytoken } from "../middleware/VerifyToken.js";
-import { isManager, isStaffOrManager } from "../middleware/VerifyRole.js";
+import { isManager, isStaff } from "../middleware/VerifyRole.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 
 
