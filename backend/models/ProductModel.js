@@ -4,7 +4,7 @@ import db from "../config/database.js";
 const Product = db.define("products", {
   name: DataTypes.STRING,
   model: DataTypes.STRING,
-  price: DataTypes.INTEGER,
+  price: DataTypes.BIGINT,
   imageName: DataTypes.STRING,
   description: DataTypes.TEXT,
   stock: {

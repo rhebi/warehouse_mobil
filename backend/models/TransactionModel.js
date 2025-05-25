@@ -9,7 +9,7 @@ const Transaction = db.define("transactions", {
     type: DataTypes.INTEGER,
     defaultValue: 1,
   },
-  total_price: DataTypes.INTEGER,
+  total_price: DataTypes.BIGINT,
   user_id: DataTypes.INTEGER,
 }, {
   freezeTableName: true

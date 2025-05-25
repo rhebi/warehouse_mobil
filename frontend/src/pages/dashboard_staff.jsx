@@ -57,7 +57,7 @@ const DashboardStaff = () => {
         payload = { ...form };
       }
 
-      await axios.patch(`/products/${editingId}`, payload, { withCredentials: true });
+      await axios.patch(`/products/${editingId}/stock`, payload, { withCredentials: true });
 
       setForm({
         name: '',
