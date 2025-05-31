@@ -3,11 +3,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import db from "./config/database.js";
-import router from "./routes/index.js";               
-import productRouter from "./routes/ProductRoute.js"; 
-import transactionRouter from "./routes/TransactionRoute.js"; 
+import router from "./routes/index.js";
 import initRelations from "./models/initRelations.js";
-import dashboardRouter from "./routes/DashboardRoute.js";
 
 initRelations();
 
@@ -31,9 +28,6 @@ const startServer = async () => {
   app.use(express.json());
   app.use(cookieParser());
   app.use(router); 
-  app.use(productRouter); 
-  app.use(transactionRouter); 
-  app.use(dashboardRouter); 
 
   app.listen(5000, () => console.log("Server running at port 5000"));
 };

@@ -21,7 +21,7 @@
 }
 
 .transaction-table-header {
-  @apply bg-gray-800 text-white;
+  @apply bg-gray-800 text-white; /* Header tetap putih */
 }
 
 .transaction-table th,
@@ -30,12 +30,26 @@
 }
 
 .transaction-row {
-  @apply hover:bg-gray-700 text-white transition;
+  @apply hover:bg-gray-700 transition; /* Hapus text-white di sini agar tidak menimpa */
+}
+
+/* MENAMBAHKAN INI: Pastikan semua teks di dalam sel <td> di tbody memiliki warna gelap */
+.transaction-table tbody td {
+    @apply text-gray-900; /* Mengatur warna teks menjadi abu-abu gelap agar terlihat jelas di atas bg-gray-100 */
+}
+
+/* Jika ada span status yang juga terpengaruh (opsional, karena td sudah diatur) */
+.transaction-table tbody td .status-pending,
+.transaction-table tbody td .status-approved,
+.transaction-table tbody td .status-rejected,
+.transaction-table tbody td .status-completed {
+    @apply text-gray-900; /* Pastikan juga kontras */
 }
 
 .transaction-empty {
-  @apply text-center py-4 text-gray-300;
+  @apply text-center py-4 text-gray-800; /* Mengatur teks 'Tidak ada data transaksi' agar terlihat */
 }
+
 
 /* Tombol Edit & Delete */
 .transaction-actions {
