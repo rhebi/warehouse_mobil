@@ -83,6 +83,7 @@ export const updateProductLimited = async (req, res) => {
             stock: req.body.stock,
             location: req.body.location,
             status: req.body.status,
+            gudang: req.body.gudang,
             updatedBy: req.user.userId // Menggunakan userId dari token
         });
 

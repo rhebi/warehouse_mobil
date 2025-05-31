@@ -136,7 +136,7 @@ const InventoryStaff = () => {
                                 {car.updater && <p className="text-xs text-gray-600">Terakhir diupdate oleh: {car.updater.name}</p>}
                             </div>
                             <div className="card-actions flex gap-2 mt-2">
-                                <button onClick={() => handleEdit(car)} className="btn-edit">Edit Stok/Lokasi/Status</button>
+                                <button onClick={() => handleEdit(car)} className="btn-edit">Edit Stok/Lokasi/Status/Gudang</button>
                             </div>
                         </div>
                     ))
