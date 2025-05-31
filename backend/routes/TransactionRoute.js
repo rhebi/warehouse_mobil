@@ -4,10 +4,11 @@ import {
   getTransactionById,
   createTransaction,
   updateTransaction,
-  deleteTransaction
+  deleteTransaction,
+  getTransactionStats // import endpoint stats
 } from "../controllers/TransactionController.js";
 import { verifytoken } from "../middleware/VerifyToken.js";
-import { isManagerOrStaff } from "../middleware/VerifyRole.js";
+import { isManager, isStaff, isManagerOrStaff } from "../middleware/VerifyRole.js";
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.get("/transactions/:id", verifytoken, isManagerOrStaff, getTransactionByI
 router.post("/transactions", verifytoken, isManagerOrStaff, createTransaction);
 router.patch("/transactions/:id", verifytoken, isManagerOrStaff, updateTransaction);
 router.delete("/transactions/:id", verifytoken, isManagerOrStaff, deleteTransaction);
+router.get("/transactions/stats", verifytoken, isManagerOrStaff, getTransactionStats);
 
 export default router;

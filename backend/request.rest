@@ -51,7 +51,6 @@ Content-Type: application/json
   "name": "Bugatti divo",
   "model": "pur card",
   "price": 13000000,
-  "imageName": "divo.jpg",
   "description": "Mahakarya kecepatan absolut.",
   "stock": 5
 }
@@ -65,7 +64,6 @@ Content-Type: application/json
   "name": "Bugatti Bolide",
   "model": "luxury Sport",
   "price": 3250000,
-  "imageName": "bolide.jpg",
   "description": "Versi terbaru dengan performa ditingkatkan.",
   "stock": 3
 }

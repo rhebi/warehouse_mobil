@@ -1,15 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext"; // AuthContext
-import Home from "./pages/home.jsx";
 import Signup from "./pages/signup.jsx";
-import About from "./pages/about.jsx";
-import Car from "./pages/car.jsx";
-import Contact from "./pages/contact.jsx";
 import Login from "./pages/login.jsx";
 import LayoutHeader from "./component/LayoutHeader.jsx";
-import Dashboard from "./pages/dashboard_manager.jsx";
-import DashboardStaff from "./pages/dashboard_staff.jsx";
+import Inventory from "./pages/inventoryManager.jsx";
+import InventoryStaff from "./pages/inventoryStaff.jsx";
 import Transaction from "./pages/transaction.jsx"; 
+import Dashboard from "./pages/dashboard.jsx"
 
 function App() {
   const { user } = useAuth();
@@ -18,31 +15,30 @@ function App() {
     <Routes>
       {/* Routes dengan header */}
       <Route element={<LayoutHeader />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/car" element={<Car />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* Dashboard Manager */}
+        {/* Inventory Manager */}
         <Route
-          path="/dashboardManager"
+          path="/inventoryManager"
           element={
             user && user.role === "manager" ? (
-              <Dashboard />
+              <Inventory />
             ) : (
-              <Navigate to="/" />
+              <Navigate to="/login" />
             )
           }
         />
 
-        {/* Dashboard Staff */}
+        {/* Inventory Staff */}
         <Route
-          path="/dashboardStaff"
+          path="/inventoryStaff"
           element={
             user && user.role === "staff" ? (
-              <DashboardStaff />
+              <InventoryStaff />
             ) : (
-              <Navigate to="/" />
+              <Navigate to="/login" />
             )
           }
         />
@@ -54,18 +50,14 @@ function App() {
             user && (user.role === "manager" || user.role === "staff") ? (
               <Transaction />
             ) : (
-              <Navigate to="/" />
+              <Navigate to="/login" />
             )
           }
         />
       </Route>
 
-      {/* Routes tanpa header */}
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/login" element={<Login />} />
-
       {/* Redirect lainnya */}
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }

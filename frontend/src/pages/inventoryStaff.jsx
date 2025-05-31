@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import { useAuth } from "../context/AuthContext";
-import "../css/dashboard.css"
+import "../css/inventory.css";
 
-const Dashboard = () => {
+const InventoryStaff = () => {
   const { user } = useAuth();
   const [cars, setCars] = useState([]);
   const [form, setForm] = useState({
@@ -11,13 +11,14 @@ const Dashboard = () => {
     model: '',
     price: '',
     description: '',
-    imageName: '',
-    stock: 0
+    stock: 0,
+    location: '',
+    status: ''
   });
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
-    if (user?.role === 'manager') {
+    if (user?.role === 'staff') {
       fetchCars();
     }
   }, [user]);
@@ -35,26 +36,36 @@ const Dashboard = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
+
+    if (isNaN(Number(form.stock))) {
+      alert("Stock harus berupa angka.");
+      return;
+    }
+
     try {
-      if (editingId) {
-        await axios.patch(`/products/${editingId}`, form, { withCredentials: true });
-      } else {
-        await axios.post('/products', form, { withCredentials: true });
-      }
+      const payload = {
+        stock: Number(form.stock),
+        location: form.location,
+        status: form.status,
+      };
+
+      await axios.patch(`/products/${editingId}/stock`, payload, { withCredentials: true });
+
       setForm({
         name: '',
         model: '',
         price: '',
         description: '',
-        imageName: '',
         stock: 0,
+        location: '',
+        status: ''
       });
       setEditingId(null);
       fetchCars();
     } catch (error) {
-      console.error('Error saving car:', error);
+      console.error('Error updating car:', error);
     }
   };
 
@@ -64,8 +75,9 @@ const Dashboard = () => {
       model: car.model,
       price: car.price,
       description: car.description,
-      imageName: car.imageName,
       stock: car.stock,
+      location: car.location || '',
+      status: car.status || ''
     });
     setEditingId(car.id);
   };
@@ -77,66 +89,55 @@ const Dashboard = () => {
       model: '',
       price: '',
       description: '',
-      imageName: '',
       stock: 0,
+      location: '',
+      status: ''
     });
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`/products/${id}`, { withCredentials: true });
-      fetchCars();
-    } catch (error) {
-      console.error('Error deleting car:', error);
-    }
-  };
-
   if (!user) return <p>Loading...</p>;
-  if (user.role !== 'manager') return <p>Akses ditolak. Halaman ini hanya untuk manajer.</p>;
+  if (user.role !== 'staff') return <p>Akses ditolak. Halaman ini hanya untuk staf.</p>;
 
   return (
-    <div className="dashboard-container">
-      <form onSubmit={handleSubmit} className="add-car-form">
-        <h2>{editingId ? 'Edit Mobil' : 'Tambah Mobil'}</h2>
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Nama Mobil" required />
-        <input name="model" value={form.model} onChange={handleChange} placeholder="Model Mobil" required />
-        <input name="price" value={form.price} onChange={handleChange} placeholder="Harga" type="number" required />
-        <input name="description" value={form.description} onChange={handleChange} placeholder="Deskripsi" required />
-        <input name="imageName" value={form.imageName} onChange={handleChange} placeholder="Nama Gambar" required />
-        <input name="stock" value={form.stock} onChange={handleChange} placeholder="Stock Mobil" type="number" required />
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <button type="submit">{editingId ? 'Update' : 'Tambah'} Mobil</button>
-          {editingId && (
+    <div className="inventory-container">
+      {editingId && (
+        <form onSubmit={handleUpdate} className="add-car-form">
+          <h2>Edit Info Mobil</h2>
+          <input name="stock" value={form.stock} onChange={handleChange} placeholder="Stock Mobil" type="number" required />
+          <input name="location" value={form.location} onChange={handleChange} placeholder="Lokasi Mobil" required />
+          <input name="status" value={form.status} onChange={handleChange} placeholder="Status Mobil (contoh: tersedia / service)" required />
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button type="submit">Update Mobil</button>
             <button type="button" onClick={handleCancelEdit} style={{ backgroundColor: '#e11d48', color: 'white' }}>
               Batal Edit
             </button>
-          )}
-        </div>
-      </form>
+          </div>
+        </form>
+      )}
 
       <div className="card-list">
         {cars.map((car) => (
           <div key={car.id} className="car-card">
-            <img src={`/img/${car.imageName}`} alt={car.name} />
             <div className="car-info">
               <p><strong>{car.name}</strong> - {car.model}</p>
               <p>Rp {parseInt(car.price).toLocaleString()}</p>
               <p>Stok: {car.stock}</p>
+              <p>Lokasi: {car.location}</p>
+              <p>Status: {car.status}</p>
               <p>{car.description}</p>
             </div>
             <div className="card-actions">
               <button onClick={() => handleEdit(car)}>Edit</button>
-              <button onClick={() => handleDelete(car.id)}>Hapus</button>
             </div>
           </div>
         ))}
       </div>
 
-      <footer className="dashboard-footer">
+      <footer className="inventory-footer">
         &copy; {new Date().getFullYear()} 2025 Ronaldo Luxury Car
       </footer>
     </div>
   );
 };
 
-export default Dashboard;
+export default InventoryStaff;

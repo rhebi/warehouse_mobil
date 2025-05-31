@@ -1,4 +1,4 @@
-.dashboard-container {
+.inventory-container {
   padding: 2rem;
   background-color: #f8fafc;
   min-height: 100vh;
@@ -117,7 +117,7 @@
 }
 
 /* Footer */
-.dashboard-footer {
+.inventory-footer {
   text-align: center;
   margin-top: 3rem;
   padding: 1rem;

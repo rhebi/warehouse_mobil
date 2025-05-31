@@ -9,7 +9,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       console.error("Logout error:", err);
     }
@@ -25,18 +25,17 @@ const Header = () => {
       </div>
 
       <nav className="flex space-x-6">
-        <Link to="/" className="hover:underline">Home</Link>
-        <Link to="/car" className="hover:underline">Our Cars</Link>
-        <Link to="/about" className="hover:underline">About</Link>
-        <Link to="/contact" className="hover:underline">Contact</Link>
         {user && user.role === "manager" && (
-          <Link to="/dashboardManager" className="hover:underline">Dashboard</Link>
+          <Link to="/inventoryManager" className="hover:underline">Inventory</Link>
         )}
         {user && user.role === "staff" && (
-          <Link to="/dashboardStaff" className="hover:underline">Dashboard</Link>
+          <Link to="/inventoryStaff" className="hover:underline">Inventory</Link>
         )}
         {user && (user.role === "manager" || user.role === "staff") && (
           <Link to="/transaction" className="hover:underline">Transaction</Link>
+        )}
+        {user && (user.role === "manager" || user.role === "staff") && (
+          <Link to="/dashboard" className="hover:underline">dashboard</Link>
         )}
       </nav>
 

@@ -1,12 +1,16 @@
 import Transaction from "../models/TransactionModel.js";
 import Product from "../models/ProductModel.js";
 import User from "../models/UserModel.js";
+import { Sequelize } from "sequelize";
 
 // Get all transactions (include Product & User)
 export const getTransactions = async (req, res) => {
   try {
     const transactions = await Transaction.findAll({
-      include: [{ model: Product, attributes: ['name'] }],
+      include: [
+        { model: Product, attributes: ['name'] },
+        { model: User, attributes: ['username', 'email'] }
+      ],
       order: [["createdAt", "DESC"]],
     });
     res.json(transactions);
@@ -19,7 +23,10 @@ export const getTransactions = async (req, res) => {
 export const getTransactionById = async (req, res) => {
   try {
     const transaction = await Transaction.findByPk(req.params.id, {
-      include: [{ model: Product, attributes: ['name'] }]
+      include: [
+        { model: Product, attributes: ['name'] },
+        { model: User, attributes: ['username', 'email'] }
+      ],
     });
     if (!transaction) return res.status(404).json({ message: "Transaction not found" });
     res.json(transaction);
@@ -34,7 +41,6 @@ export const createTransaction = async (req, res) => {
     const { transaction_code, buyer_name, product_id, quantity } = req.body;
     const user_id = req.user.userId;
 
-    // Ambil product untuk harga
     const product = await Product.findByPk(product_id);
     if (!product) return res.status(404).json({ message: "Product not found" });
     const total_price = product.price * quantity;
@@ -47,12 +53,14 @@ export const createTransaction = async (req, res) => {
       user_id,
     });
 
-    // Return transaction lengkap include product dan user
     const createdTransaction = await Transaction.findByPk(newTransaction.id, {
-      include: [Product, User],
+      include: [
+        { model: Product, attributes: ['name'] },
+        { model: User, attributes: ['username', 'email'] }
+      ],
     });
 
-    res.json(createdTransaction);
+    res.status(201).json(createdTransaction);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -82,7 +90,10 @@ export const updateTransaction = async (req, res) => {
     });
 
     const updatedTransaction = await Transaction.findByPk(req.params.id, {
-      include: [Product, User],
+      include: [
+        { model: Product, attributes: ['name'] },
+        { model: User, attributes: ['username', 'email'] }
+      ],
     });
 
     res.json(updatedTransaction);
@@ -98,6 +109,37 @@ export const deleteTransaction = async (req, res) => {
     if (!transaction) return res.status(404).json({ message: "Transaction not found" });
     await transaction.destroy();
     res.json({ message: "Deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Stats transaksi
+export const getTransactionStats = async (req, res) => {
+  try {
+    const totalTransactions = await Transaction.count();
+
+    const totalRevenueResult = await Transaction.findOne({
+      attributes: [[Sequelize.fn('SUM', Sequelize.col('total_price')), 'totalRevenue']]
+    });
+    const totalRevenue = totalRevenueResult.dataValues.totalRevenue || 0;
+
+    const transactionsPerProduct = await Transaction.findAll({
+      attributes: [
+        'product_id',
+        [Sequelize.fn('COUNT', Sequelize.col('id')), 'transactionCount'],
+        [Sequelize.fn('SUM', Sequelize.col('quantity')), 'totalQuantity'],
+        [Sequelize.fn('SUM', Sequelize.col('total_price')), 'totalRevenuePerProduct'],
+      ],
+      group: ['product_id'],
+      include: [{ model: Product, attributes: ['name'] }]
+    });
+
+    res.json({
+      totalTransactions,
+      totalRevenue,
+      transactionsPerProduct
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

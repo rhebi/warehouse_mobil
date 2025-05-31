@@ -1,5 +1,6 @@
 import Product from "../models/ProductModel.js";
 
+// GET semua produk
 export const getProducts = async (req, res) => {
   try {
     const cars = await Product.findAll();
@@ -9,6 +10,7 @@ export const getProducts = async (req, res) => {
   }
 };
 
+// GET produk by ID
 export const getProductById = async (req, res) => {
   try {
     const car = await Product.findByPk(req.params.id);
@@ -19,54 +21,64 @@ export const getProductById = async (req, res) => {
   }
 };
 
+// CREATE produk (Manager only)
 export const createProduct = async (req, res) => {
   try {
-    const { name, model, price, imageName, description, stock } = req.body;
-    const newCar = await Product.create({ name, model, price, imageName, description, stock });
+    const { name, model, price, description, stock, location, status, gudang } = req.body;
+    const newCar = await Product.create({
+      name, model, price, description, stock, location, status, gudang,
+      updatedBy: req.user.userId
+    });
     res.status(201).json(newCar);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
 
-export const updateProduct = async (req, res) => {
+// PATCH produk (Manager full update)
+export const updateProductFull = async (req, res) => {
   try {
-    const id = req.params.id;
-    const product = await Product.findByPk(id);
-
-    if (!product) {
-      return res.status(404).json({ msg: "Product not found" });
-    }
-
-    await product.update(req.body);
-    return res.json({ msg: "Product updated by manager" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: "Gagal update produk" });
-  }
-};
-
-export const updateProductStock = async (req, res) => {
-  try {
-    const { stock } = req.body;
-
-    if (stock == null) {
-      return res.status(400).json({ msg: "Field 'stock' diperlukan" });
-    }
-
     const product = await Product.findByPk(req.params.id);
-    if (!product) {
-      return res.status(404).json({ msg: "Produk tidak ditemukan" });
-    }
+    if (!product) return res.status(404).json({ msg: "Product not found" });
 
-    await product.update({ stock });
-    return res.json({ msg: "Stock updated by staff" });
+    await product.update({
+      name: req.body.name,
+      model: req.body.model,
+      price: req.body.price,
+      description: req.body.description,
+      stock: req.body.stock,
+      location: req.body.location,
+      status: req.body.status,
+      gudang: req.body.gudang,
+      updatedBy: req.user.userId
+    });
+
+    res.status(200).json({ msg: "Product updated by manager" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: "Gagal update stok produk" });
+    res.status(500).json({ msg: error.message });
   }
 };
 
+// PATCH produk (Staff: stock, location, status)
+export const updateProductLimited = async (req, res) => {
+  try {
+    const product = await Product.findByPk(req.params.id);
+    if (!product) return res.status(404).json({ msg: "Product not found" });
+
+    await product.update({
+      stock: req.body.stock,
+      location: req.body.location,
+      status: req.body.status,
+      updatedBy: req.user.userId
+    });
+
+    res.status(200).json({ msg: "Product updated by staff" });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+// DELETE produk (Manager only)
 export const deleteProduct = async (req, res) => {
   try {
     const car = await Product.findByPk(req.params.id);
@@ -76,5 +88,22 @@ export const deleteProduct = async (req, res) => {
     res.json({ message: "Deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+// APPROVE produk (Manager only)
+export const approveProduct = async (req, res) => {
+  try {
+    const product = await Product.findByPk(req.params.id);
+    if (!product) return res.status(404).json({ msg: "Product not found" });
+
+    if (req.user.role !== 'manager') {
+      return res.status(403).json({ msg: "Access ditolak" });
+    }
+
+    await product.update({ status: 'approved', updatedBy: req.user.userId });
+    res.json({ msg: "Product approved" });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
   }
 };

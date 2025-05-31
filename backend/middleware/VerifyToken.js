@@ -14,7 +14,8 @@ export const verifytoken = (req, res, next) => {
     req.user = {
       userId: decoded.userId,
       email: decoded.email,
-      role: decoded.role,  
+      role: decoded.role, 
+      updatedBy: decoded.updatedBy,
     };
     next();
   });

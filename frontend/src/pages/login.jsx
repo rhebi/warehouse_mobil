@@ -26,7 +26,7 @@ const Login = () => {
       const meRes = await axios.get("/me");
       setUser(meRes.data);
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       console.error("Login error:", err);
       setMsg(err.response?.data?.msg || "Login gagal");
