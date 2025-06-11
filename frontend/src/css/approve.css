@@ -1,0 +1,138 @@
+/* src/css/approve.css */
+
+/* Kontainer utama halaman Approval Manager */
+.approval-container {
+    color: #f0f0f0; /* Warna teks umum */
+    max-width: 1200px; /* Lebar maksimum container */
+    margin: 40px auto; /* DIUBAH: Menambahkan margin atas-bawah otomatis, tengah horizontal */
+    padding: 25px; /* Sedikit disesuaikan padding */
+    border-radius: 12px; /* Sudut membulat */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Efek bayangan */
+    display: flex; /* Menggunakan Flexbox */
+    flex-direction: column; /* Item dalam flexbox disusun vertikal */
+}
+
+/* Judul halaman */
+.approval-title {
+    font-size: 2.2rem; /* DIUBAH: Sedikit dikecilkan biar lebih proporsional */
+    font-weight: 700; /* Ketebalan font */
+    margin-bottom: 25px; /* DIUBAH: Margin disesuaikan */
+    text-align: center; /* Teks di tengah */
+    color: #ffffff; /* Warna teks putih */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan teks */
+}
+
+/* Kontainer untuk Tabel, agar bisa di-scroll horizontal */
+.approval-table-container {
+    margin-bottom: 2rem; /* DIUBAH: Margin bawah disesuaikan */
+    /* DIHAPUS: flex-grow: 1; */
+    /* Ini yang bikin tabelnya mendorong footer ke bawah */
+    display: flex; /* Menggunakan Flexbox */
+    justify-content: center; /* Pusatkan horizontal */
+    max-width: 100%; /* Lebar maksimum 100% */
+    overflow-x: auto; /* Memungkinkan scroll horizontal jika konten melebihi lebar */
+}
+
+/* Tabel Approval */
+.approval-table {
+    width: 100%; /* Lebar penuh tabel */
+    min-width: 900px; /* Lebar minimal tabel */
+    border-collapse: collapse; /* Menggabungkan border sel */
+    background-color: #ffffff; /* Latar belakang tabel putih */
+    border-radius: 10px; /* Sudut membulat */
+    overflow: hidden; /* Agar border radius terlihat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Efek bayangan */
+}
+
+.approval-table-header th {
+    background-color: #f2f2f2; /* Warna latar header tabel */
+    padding: 12px 10px; /* DIUBAH: Dibuat lebih lega sedikit padding header */
+    text-align: left; /* Teks rata kiri */
+    font-weight: 600; /* Ketebalan font */
+    color: #333; /* Warna teks header */
+    border-bottom: 1px solid #ddd; /* Border bawah header */
+    font-size: 0.8rem; /* DIUBAH: Sedikit dibesarkan biar enak dibaca */
+    text-transform: uppercase; /* Teks jadi huruf besar semua */
+    letter-spacing: 0.5px; /* Jarak antar huruf */
+    word-wrap: break-word; /* Memecah kata jika terlalu panjang */
+    min-width: 50px; /* Lebar minimal kolom */
+}
+
+.approval-table td {
+    padding: 10px 10px; /* DIUBAH: Dibuat lebih lega sedikit padding sel */
+    border-bottom: 1px solid #eee; /* Border bawah sel */
+    color: #333; /* Warna teks sel */
+    font-size: 0.85rem; /* DIUBAH: Sedikit dibesarkan biar enak dibaca */
+    word-wrap: break-word; /* Memecah kata jika terlalu panjang */
+}
+
+/* Baris genap */
+.approval-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Warna latar baris genap */
+}
+
+/* Efek hover pada baris tabel */
+.approval-table tbody tr:hover {
+    background-color: #e9e9e9; /* Warna hover sedikit diubah */
+    cursor: default; /* Kursor default */
+    transition: background-color 0.2s ease; /* Transisi warna */
+}
+
+/* Styling untuk pesan "Tidak ada data" */
+.approval-empty {
+    text-align: center; /* Teks di tengah */
+    padding: 25px; /* Padding disesuaikan */
+    color: #666; /* Warna teks */
+    font-style: italic; /* Gaya teks italic */
+    font-size: 1rem; /* Font size disesuaikan */
+}
+
+
+/* SEMUA KODE DI BAWAH INI TETAP SAMA, TIDAK DIUBAH */
+
+/* Kontrol white-space dan min-width per kolom secara spesifik */
+.approval-table th:nth-child(1), .approval-table td:nth-child(1) { min-width: 40px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.approval-table th:nth-child(2), .approval-table td:nth-child(2) { min-width: 110px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.approval-table th:nth-child(3), .approval-table td:nth-child(3) { min-width: 80px; white-space: normal; }
+.approval-table th:nth-child(4), .approval-table td:nth-child(4) { min-width: 90px; white-space: normal; }
+.approval-table th:nth-child(5), .approval-table td:nth-child(5) { min-width: 50px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.approval-table th:nth-child(6), .approval-table td:nth-child(6) { min-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.approval-table th:nth-child(7), .approval-table td:nth-child(7) { min-width: 80px; white-space: normal; }
+.approval-table th:nth-child(8), .approval-table td:nth-child(8) { min-width: 70px; white-space: normal; }
+.approval-table th:nth-child(9), .approval-table td:nth-child(9) { min-width: 80px; white-space: normal; }
+.approval-table th:nth-child(10), .approval-table td:nth-child(10) { min-width: 170px; white-space: nowrap; }
+
+/* Styling untuk Status Transaksi */
+.status-pending { background-color: #ffc107; color: #333; padding: 0.3em 0.8em; border-radius: 4px; font-size: 0.85em; font-weight: 600; white-space: nowrap; }
+.status-approved { background-color: #28a745; color: white; padding: 0.3em 0.8em; border-radius: 4px; font-size: 0.85em; font-weight: 600; white-space: nowrap; }
+.status-rejected { background-color: #dc3545; color: white; padding: 0.3em 0.8em; border-radius: 4px; font-size: 0.85em; font-weight: 600; white-space: nowrap; }
+.status-completed { background-color: #007bff; color: white; padding: 0.3em 0.8em; border-radius: 4px; font-size: 0.85em; font-weight: 600; white-space: nowrap; }
+
+/* Tombol Approval/Reject di TransactionApprovalManager */
+.btn-approve-custom,
+.btn-reject-custom {
+    padding: 8px 15px; 
+    border-radius: 6px; 
+    cursor: pointer;
+    font-size: 0.9rem; 
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    min-width: 80px; 
+    text-align: center;
+}
+
+.btn-approve-custom { background-color: #28a745; color: white; }
+.btn-approve-custom:hover { background-color: #218838; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
+.btn-reject-custom { background-color: #dc3545; color: white; }
+.btn-reject-custom:hover { background-color: #c82333; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
+
+/* Footer halaman */
+.approval-footer {
+    padding: 15px; /* Padding footer */
+    text-align: center; /* Teks di tengah */
+    color: #ffffff; /* Warna teks putih */
+    font-size: 0.8rem; /* Ukuran font */
+    margin-top: auto; /* Mendorong footer ke bagian paling bawah */
+}

@@ -1,70 +1,237 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Container dan Title */
+/* Kontainer utama halaman */
 .transaction-container {
-  @apply p-6 max-w-6xl mx-auto bg-gray-900 min-h-screen text-white;
+    color: #f0f0f0; /* Warna teks umum */
+    max-width: 1200px; /* Lebar maksimum container */
+    margin: 0 auto; /* Tengah secara horizontal */
+    padding: 30px; /* Padding di dalam container */
+    border-radius: 12px; /* Sudut membulat */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Efek bayangan */
+    min-height: calc(100vh - 120px); /* Tinggi minimal, disesuaikan dengan viewport */
+    display: flex; /* Menggunakan Flexbox */
+    flex-direction: column; /* Item dalam flexbox disusun secara vertikal */
 }
 
+/* Judul halaman */
 .transaction-title {
-  @apply text-3xl font-bold mb-6 text-center;
+    font-size: 2.5rem; /* Ukuran judul */
+    font-weight: 700; /* Ketebalan font */
+    margin-bottom: 2rem; /* Jarak bawah judul */
+    text-align: center; /* Teks di tengah */
+    color: #ffffff; /* Warna teks putih */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan teks */
 }
 
-.transaction-error {
-  @apply text-red-500 mb-4;
+/* Form Transaksi */
+.transaction-form {
+    background-color: #ffffff; /* Latar belakang form jadi PUTIH */
+    padding: 30px; /* Padding di dalam form */
+    border-radius: 0px; /* Sudut membulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+    margin-bottom: 2.5rem; /* Jarak bawah form */
+    border: 1px solid #e0e0e0; /* Border form */
+    display: flex; /* Menggunakan Flexbox */
+    flex-direction: column; /* Item dalam flexbox disusun vertikal */
 }
 
-/* Table Style */
+/* UBAH INI: Warna teks untuk h3 di dalam form jadi gelap */
+.transaction-form h3 {
+    color: #333333; /* Warna teks GELAP agar terlihat di latar putih */
+    margin-bottom: 1.5rem; /* Beri sedikit jarak bawah */
+}
+
+/* Label form */
+.transaction-form label {
+    display: block; /* Menjadikan label sebagai blok */
+    font-size: 0.95rem; /* Ukuran font label */
+    color: #333333; /* Warna label jadi GELAP */
+    margin-bottom: 8px; /* Jarak bawah label */
+    font-weight: 500; /* Ketebalan font */
+}
+
+/* Input dan Select di form */
+.transaction-form .input {
+    background-color: #f8f8f8; /* Warna latar input */
+    color: #333333; /* Warna teks input jadi GELAP */
+    border: 1px solid #cccccc; /* Border input */
+    padding: 12px 15px; /* Padding input */
+    border-radius: 6px; /* Sudut membulat input */
+    font-size: 1rem; /* Ukuran font input */
+    width: 100%; /* Lebar penuh */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+    margin-bottom: 1.5rem; /* Jarak bawah input */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Transisi saat fokus */
+}
+
+.transaction-form .input:focus {
+    border-color: #4a90e2; /* Warna border saat fokus */
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3); /* Bayangan saat fokus */
+    outline: none; /* Hilangkan outline default browser */
+}
+
+.transaction-form .input::placeholder {
+    color: #888888; /* Warna placeholder */
+}
+
+.transaction-form textarea.input {
+    min-height: 100px; /* Tinggi minimal textarea */
+    resize: vertical; /* Memungkinkan textarea diubah ukurannya secara vertikal */
+}
+
+/* Tombol submit di form */
+.transaction-form .btn {
+    background-color: #4a90e2; /* Warna BIRU */
+    color: white; /* Warna teks putih */
+    padding: 12px 25px; /* Padding tombol */
+    border-radius: 8px; /* Sudut membulat */
+    cursor: pointer; /* Kursor pointer saat hover */
+    font-size: 1.1rem; /* Ukuran font */
+    font-weight: 600; /* Ketebalan font */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Transisi hover */
+    width: 100%; /* Lebar penuh */
+    border: none; /* Tanpa border */
+    letter-spacing: 0.5px; /* Jarak antar huruf */
+}
+
+.transaction-form .btn:hover {
+    background-color: #357bd8; /* Warna saat hover */
+    transform: translateY(-2px); /* Efek naik sedikit saat hover */
+}
+
+.transaction-form .btn:active {
+    transform: translateY(0); /* Efek kembali saat diklik */
+}
+
+/* Kontainer untuk Tabel */
+.transaction-table-container {
+    margin-bottom: 2rem; /* Jarak bawah */
+    flex-grow: 1; /* Tabel mengisi ruang yang tersedia */
+    display: flex; /* Menggunakan Flexbox */
+    justify-content: center; /* Pusatkan horizontal */
+}
+
+/* Tabel Transaksi */
 .transaction-table {
-  @apply min-w-full text-sm border border-gray-700 rounded-md overflow-hidden;
+    width: 100%; /* Lebar penuh tabel */
+    max-width: 100%; /* Lebar maksimum tabel */
+    border-collapse: collapse; /* Menggabungkan border sel */
+    background-color: #ffffff; /* Latar belakang tabel PUTIH */
+    border-radius: 10px; /* Sudut membulat */
+    overflow: hidden; /* Agar border radius terlihat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Efek bayangan */
 }
 
-.transaction-table-header {
-  @apply bg-gray-800 text-white; /* Header tetap putih */
+.transaction-table-header th {
+    background-color: #f2f2f2; /* Warna latar header tabel */
+    padding: 12px 15px; /* Padding header */
+    text-align: left; /* Teks rata kiri */
+    font-weight: 600; /* Ketebalan font */
+    color: #333; /* Warna teks header */
+    border-bottom: 1px solid #ddd; /* Border bawah header */
+    font-size: 0.85rem; /* Ukuran font */
+    text-transform: uppercase; /* Teks jadi huruf besar semua */
+    letter-spacing: 0.5px; /* Jarak antar huruf */
+    white-space: normal; /* Memungkinkan teks multi-baris */
+    word-wrap: break-word; /* Memecah kata jika terlalu panjang */
+    min-width: 50px; /* Lebar minimal kolom */
 }
 
-.transaction-table th,
 .transaction-table td {
-  @apply px-4 py-2 border-b border-gray-700;
+    padding: 10px 15px; /* Padding sel tabel */
+    border-bottom: 1px solid #eee; /* Border bawah sel */
+    color: #333; /* Warna teks sel */
+    font-size: 0.8rem; /* Ukuran font */
+    white-space: normal; /* Memungkinkan teks multi-baris */
+    word-wrap: break-word; /* Memecah kata jika terlalu panjang */
 }
 
-.transaction-row {
-  @apply hover:bg-gray-700 transition; /* Hapus text-white di sini agar tidak menimpa */
+/* Lebar kolom spesifik (opsional, sesuaikan kebutuhan) */
+.transaction-table th:nth-child(1), .transaction-table td:nth-child(1) { width: 5%; }
+.transaction-table th:nth-child(2), .transaction-table td:nth-child(2) { width: 15%; }
+.transaction-table th:nth-child(3), .transaction-table td:nth-child(3) { width: 12%; }
+.transaction-table th:nth-child(4), .transaction-table td:nth-child(4) { width: 15%; }
+.transaction-table th:nth-child(5), .transaction-table td:nth-child(5) { width: 7%; }
+.transaction-table th:nth-child(6), .transaction-table td:nth-child(6) { width: 13%; }
+.transaction-table th:nth-child(7), .transaction-table td:nth-child(7) { width: 12%; }
+.transaction-table th:nth-child(8), .transaction-table td:nth-child(8) { width: 10%; }
+.transaction-table th:nth-child(9), .transaction-table td:nth-child(9) { width: 8%; }
+.transaction-table th:nth-child(10), .transaction-table td:nth-child(10) { width: 10%; }
+
+
+/* Baris genap */
+.transaction-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Warna latar baris genap */
 }
 
-/* MENAMBAHKAN INI: Pastikan semua teks di dalam sel <td> di tbody memiliki warna gelap */
-.transaction-table tbody td {
-    @apply text-gray-900; /* Mengatur warna teks menjadi abu-abu gelap agar terlihat jelas di atas bg-gray-100 */
+/* Efek hover pada baris tabel */
+.transaction-table tbody tr:hover {
+    background-color: #e0e0e0; /* Warna latar saat hover */
+    cursor: default; /* Kursor default */
+    font-weight: normal; /* Ketebalan font normal */
+    transition: background-color 0.2s ease; /* Transisi warna */
 }
 
-/* Jika ada span status yang juga terpengaruh (opsional, karena td sudah diatur) */
-.transaction-table tbody td .status-pending,
-.transaction-table tbody td .status-approved,
-.transaction-table tbody td .status-rejected,
-.transaction-table tbody td .status-completed {
-    @apply text-gray-900; /* Pastikan juga kontras */
-}
-
+/* Styling untuk pesan "Tidak ada data" */
 .transaction-empty {
-  @apply text-center py-4 text-gray-800; /* Mengatur teks 'Tidak ada data transaksi' agar terlihat */
+    text-align: center; /* Teks di tengah */
+    padding: 30px; /* Padding */
+    color: #666; /* Warna teks */
+    font-style: italic; /* Gaya teks italic */
+    font-size: 1rem; /* Ukuran font */
 }
 
-
-/* Tombol Edit & Delete */
-.transaction-actions {
-  @apply space-x-2;
+/* Styling untuk Status Transaksi */
+.status-pending {
+    background-color: #ffc107; /* Kuning */
+    color: #333;
+    padding: 0.3em 0.8em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap; /* Mencegah teks pecah baris */
+}
+.status-approved {
+    background-color: #28a745; /* Hijau */
+    color: white;
+    padding: 0.3em 0.8em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.status-rejected {
+    background-color: #dc3545; /* Merah */
+    color: white;
+    padding: 0.3em 0.8em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.status-completed {
+    background-color: #007bff; /* Biru */
+    color: white;
+    padding: 0.3em 0.8em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
-.btn-edit {
-  @apply bg-blue-600 text-white rounded-md px-3 py-1 hover:bg-blue-700 transition;
+/* Tombol umum (jika ada di luar form) */
+.btn {
+    cursor: pointer; /* Kursor pointer */
+    border: none; /* Tanpa border */
+    padding: 0.5rem 1rem; /* Padding tombol */
+    border-radius: 0.25rem; /* Sudut membulat */
+    font-weight: bold; /* Ketebalan font */
+    transition: background-color 0.2s ease; /* Transisi warna */
 }
 
-.btn-delete {
-  @apply bg-red-600 text-white rounded-md px-3 py-1 hover:bg-red-700 transition;
-}
-
-/* Footer */
+/* Footer halaman */
 .transaction-footer {
-  @apply mt-10 text-center text-gray-400 text-sm border-t border-gray-700 pt-4;
+    padding: 20px; /* Padding footer */
+    text-align: center; /* Teks di tengah */
+    color: #ffffff;    /* Warna teks putih */
+    font-size: 0.8rem; /* Ukuran font */
+    margin-top: auto; /* Mendorong footer ke bagian paling bawah */
 }

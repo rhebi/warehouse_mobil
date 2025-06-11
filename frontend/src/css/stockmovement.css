@@ -1,0 +1,141 @@
+/* src/css/stockmovement.css */
+
+.stock-movement-container {
+    max-width: 1200px; /* Lebar maksimum container */
+    margin: 40px auto; /* DIUBAH: biar konsisten kayak halaman lain, margin atas-bawah otomatis */
+    padding: 20px; /* Padding di dalam container */
+    border-radius: 8px; /* Sudut membulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+    display: flex; /* DITAMBAH: untuk layout flex */
+    flex-direction: column; /* DITAMBAH: arah flex ke bawah (vertikal) */
+    min-height: calc(100vh - 80px); /* DITAMBAH: tinggi minimal setinggi layar dikurangi sedikit */
+}
+
+.stock-movement-title {
+    font-size: 2.25rem; /* Ukuran judul h2 */
+    font-weight: bold; /* Ketebalan font */
+    margin-bottom: 1.5rem; /* Jarak bawah judul */
+    text-align: center; /* Teks di tengah */
+    color: #f8f8f8; /* Warna teks judul */
+}
+
+.stock-movement-form {
+    background-color: #ffffff; /* Latar belakang form putih */
+    padding: 24px; /* Padding di dalam form */
+    border-radius: 8px; /* Sudut membulat */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+    margin-bottom: 2rem; /* Jarak bawah form */
+}
+
+/* Styling untuk input dan select di form */
+.stock-movement-form .input {
+    border: 1px solid #ccc; /* Border input */
+    padding: 10px 12px; /* Padding input */
+    border-radius: 4px; /* Sudut membulat input */
+    font-size: 1rem; /* Ukuran font input */
+    width: 100%; /* Lebar penuh */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+    margin-bottom: 1rem; /* Jarak antar input */
+}
+
+.stock-movement-form textarea.input {
+    resize: vertical; /* Memungkinkan textarea diubah ukurannya secara vertikal */
+    min-height: 80px; /* Tinggi minimal textarea */
+}
+
+/* Styling tombol submit */
+.stock-movement-form .btn {
+    background-color: #4a5568; /* Warna default tombol */
+    color: white; /* Warna teks tombol */
+    padding: 10px 15px; /* Padding tombol */
+    border-radius: 4px; /* Sudut membulat */
+    cursor: pointer; /* Kursor pointer saat hover */
+    transition: background-color 0.2s ease; /* Transisi saat hover */
+}
+
+.stock-movement-form .btn:hover {
+    background-color: #2d3748; /* Warna hover tombol */
+}
+
+/* Styling Tabel */
+.stock-movement-table {
+    width: 100%; /* Lebar penuh tabel */
+    border-collapse: collapse; /* Menggabungkan border sel */
+    margin-top: 1.5rem; /* Jarak atas tabel */
+    background-color: #ffffff; /* Latar belakang tabel putih */
+    border-radius: 8px; /* Sudut membulat tabel */
+    overflow: hidden; /* Agar border radius terlihat */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
+.stock-movement-table-header th {
+    background-color: #f2f2f2; /* Warna latar header tabel */
+    padding: 12px 15px; /* Padding header */
+    text-align: left; /* Teks rata kiri */
+    font-weight: bold; /* Ketebalan font */
+    color: #333; /* Warna teks header */
+    border-bottom: 1px solid #ddd; /* Border bawah header */
+}
+
+.stock-movement-table td {
+    padding: 12px 15px; /* Padding sel tabel */
+    border-bottom: 1px solid #eee; /* Border bawah sel */
+    color: #333; /* Warna teks sel */
+}
+
+.stock-movement-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Warna latar baris genap */
+}
+
+.stock-movement-table tbody tr:hover {
+    background-color: #f1f1f1; /* Warna latar saat hover */
+}
+
+.stock-movement-empty {
+    text-align: center; /* Teks di tengah */
+    padding: 20px; /* Padding */
+    color: #666; /* Warna teks */
+}
+
+/* Styling untuk status di tabel */
+.status-inbound {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green */
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+.status-outbound {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red */
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+.status-adjustment {
+    background-color: #ffeeba; /* Light yellow */
+    color: #856404; /* Dark yellow */
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+.status-transfer {
+    background-color: #d1ecf1; /* Light blue */
+    color: #0c5460; /* Dark blue */
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+/* Footer */
+.stock-movement-footer {
+    padding: 1rem; /* Padding footer */
+    text-align: center; /* Teks di tengah */
+    color: #ffffff;    /* Warna teks putih */
+    font-size: 0.85rem; /* Ukuran font */
+    margin-top: auto; /* Mendorong footer ke bagian paling bawah */
+}

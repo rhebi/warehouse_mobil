@@ -1,0 +1,84 @@
+/* src/css/dashboard.css */
+
+/* --- Kontainer Utama Dashboard --- */
+.dashboard-container {
+    padding: 1.5rem; /* 24px */
+    color: #f7fafc; /* Warna teks default putih keabuan */
+}
+
+/* --- Judul "Selamat Datang" --- */
+.dashboard-header {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    margin-bottom: 1.5rem; /* 24px */
+    color: #ffffff;
+}
+
+/* --- Grid untuk Semua Kartu --- */
+.dashboard-grid {
+    display: grid;
+    gap: 1.5rem; /* 24px */
+}
+
+/* --- Kartu Statistik Utama (Total Pengguna, Produk, dll) --- */
+.summary-card {
+    background-color: #2d3748; /* Warna latar kartu lebih gelap */
+    padding: 1.5rem; /* 24px */
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-left: 4px solid #4299e1; /* Aksen warna biru di kiri */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    color: #1a202c; /* Warna teks di dalam kartu jadi gelap */
+}
+
+/* Efek hover biar interaktif */
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.summary-card h2 {
+    color: #a0aec0; /* Warna judul kartu agak redup */
+    font-size: 1rem; /* 16px */
+    font-weight: 600;
+    margin-bottom: 0.5rem; /* 8px */
+}
+
+.summary-card p {
+    font-size: 2rem; /* 32px */
+    font-weight: 700;
+    color: #ffffff; /* Angka jadi putih terang */
+}
+
+/* --- Kontainer Grafik & List --- */
+.chart-card {
+    background-color: #2d3748; /* Warna latar disamakan dengan kartu statistik */
+    padding: 1.5rem; /* 24px */
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    color: #f7fafc; /* Warna teks di dalam kartu grafik jadi putih */
+}
+
+.chart-card h2 {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 600;
+    margin-bottom: 1rem; /* 16px */
+}
+
+/* --- Tooltip Kustom dari Recharts --- */
+.custom-tooltip {
+    background-color: rgba(30, 41, 59, 0.9);
+    color: #ffffff;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #4a5568;
+}
+
+/* --- Footer Halaman --- */
+.dashboard-footer {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #ffffff; 
+    font-size: 0.875rem; /* 14px */
+    margin-top: auto;
+}

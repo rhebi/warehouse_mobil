@@ -1,127 +1,304 @@
+/* Kontainer utama halaman Inventory (Manager & Staff) */
 .inventory-container {
-  padding: 2rem;
-  background-color: #f8fafc;
-  min-height: 100vh;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0f0f0; /* Warna teks umum di dalam container */
+    max-width: 1200px; /* Lebar maksimum container */
+    margin: 0 auto; /* Tengah secara horizontal */
+    padding: 30px; /* Jarak padding di dalam container */
+    border-radius: 12px; /* Sudut membulat */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Efek bayangan */
+    min-height: calc(100vh - 120px); /* Tinggi minimal, disesuaikan dengan tinggi viewport */
+    display: flex; /* Menggunakan Flexbox untuk layout */
+    flex-direction: column; /* Item dalam flexbox disusun secara vertikal */
 }
 
-/* ===== Form Tambah Mobil ===== */
+/* Judul halaman Inventory (baru) */
+.inventory-page-title {
+    font-size: 2.5rem; /* Ukuran judul lebih besar */
+    font-weight: 700; /* Lebih bold */
+    margin-bottom: 2rem; /* Jarak bawah */
+    text-align: center; /* Teks di tengah */
+    color: #ffffff; /* Warna teks putih bersih */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan pada teks */
+}
+
+/* Form Tambah/Edit Mobil */
 .add-car-form {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  max-width: 800px;
-  margin: 0 auto 2.5rem auto;
+    background-color: #ffffff; /* Latar belakang form putih */
+    padding: 30px; /* Padding di dalam form */
+    border-radius: 10px; /* Sudut membulat */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk form putih */
+    margin-bottom: 2.5rem; /* Jarak bawah form */
+    border: 1px solid #e0e0e0; /* Border untuk form putih */
 }
 
-.add-car-form h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #0f172a;
+.add-car-form h2 { /* Ini adalah h2 di dalam form yang sekarang dihapus di JSX, tapi biarkan saja untuk berjaga-jaga */
+    color: #333333;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-.add-car-form input,
-.add-car-form textarea {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
-  background-color: #f1f5f9;
-  color: #0f172a;
+/* Label di form */
+.add-car-form label {
+    display: block; /* Menjadikan label sebagai blok agar berada di baris sendiri */
+    font-size: 0.95rem; /* Ukuran font label */
+    color: #333333; /* Warna teks label */
+    margin-bottom: 8px; /* Jarak bawah label */
+    font-weight: 500; /* Ketebalan font label */
 }
 
-.add-car-form button {
-  background-color: #2563eb;
-  color: white;
-  padding: 0.6rem 1.5rem;
-  border-radius: 0.5rem;
-  border: none;
-  transition: background-color 0.2s ease;
+/* Input Fields di Form */
+.input-field {
+    background-color: #f8f8f8; /* Warna latar input */
+    color: #333333; /* Warna teks input */
+    border: 1px solid #cccccc; /* Border input */
+    padding: 12px 15px; /* Padding input */
+    border-radius: 6px; /* Sudut membulat input */
+    font-size: 1rem; /* Ukuran font input */
+    width: 100%; /* Lebar penuh */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+    margin-bottom: 1.5rem; /* Jarak bawah input */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Transisi saat fokus */
 }
 
-.add-car-form button:hover {
-  background-color: #1d4ed8;
+.input-field:focus {
+    border-color: #4a90e2; /* Warna border saat fokus */
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3); /* Bayangan saat fokus */
+    outline: none; /* Hilangkan outline default browser */
 }
 
-/* ===== Section Card Mobil ===== */
+.input-field::placeholder {
+    color: #888888; /* Warna placeholder */
+}
+
+/* Select Box */
+.input-field select {
+    appearance: none; /* Menghilangkan styling default browser */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Menambahkan ikon panah kustom */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Posisi ikon */
+    background-size: 20px; /* Ukuran ikon */
+}
+
+/* Tombol Form (Primary & Cancel) */
+.btn-primary {
+    background-color: #4a90e2; /* Warna biru */
+    color: white; /* Warna teks putih */
+    padding: 12px 25px; /* Padding tombol */
+    border-radius: 8px; /* Sudut membulat */
+    cursor: pointer; /* Kursor pointer saat hover */
+    font-size: 1.1rem; /* Ukuran font */
+    font-weight: 600; /* Ketebalan font */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Transisi hover */
+    border: none; /* Tanpa border */
+    letter-spacing: 0.5px; /* Jarak antar huruf */
+}
+
+.btn-primary:hover {
+    background-color: #357bd8; /* Warna saat hover */
+    transform: translateY(-2px); /* Efek naik sedikit saat hover */
+}
+
+.btn-primary:active {
+    transform: translateY(0); /* Efek kembali saat diklik */
+}
+
+.btn-cancel {
+    background-color: #dc3545; /* Warna merah */
+    color: white; /* Warna teks putih */
+    padding: 12px 25px; /* Padding tombol */
+    border-radius: 8px; /* Sudut membulat */
+    cursor: pointer; /* Kursor pointer saat hover */
+    font-size: 1.1rem; /* Ukuran font */
+    font-weight: 600; /* Ketebalan font */
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Transisi hover */
+    border: none; /* Tanpa border */
+    letter-spacing: 0.5px; /* Jarak antar huruf */
+}
+
+.btn-cancel:hover {
+    background-color: #c82333; /* Warna saat hover */
+    transform: translateY(-2px); /* Efek naik sedikit saat hover */
+}
+
+.btn-cancel:active {
+    transform: translateY(0); /* Efek kembali saat diklik */
+}
+
+/* Daftar Card Produk */
 .card-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
+    display: grid; /* Menggunakan Grid untuk layout kartu */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Kolom responsif */
+    gap: 20px; /* Jarak antar kartu */
+    flex-grow: 1; /* Agar daftar kartu mengisi ruang yang tersedia */
 }
 
-/* ===== Card Individual ===== */
+/* Card Produk Individu */
 .car-card {
-  background-color: #ffffff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: #202c33; /* Warna background card lebih gelap kebiruan */
+    color: #f0f0f0; /* Warna teks di dalam card */
+    padding: 20px; /* Padding di dalam card */
+    border-radius: 10px; /* Sudut membulat */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Efek bayangan */
+    border: 1px solid #30404a; /* Border card */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* Transisi hover */
+    position: relative; /* Diperlukan untuk elemen absolut di dalamnya */
+    overflow: hidden; /* Mengatasi konten yang meluap */
 }
 
 .car-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px); /* Efek naik saat hover */
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5); /* Bayangan lebih besar saat hover */
+    background-color: #273640; /* Warna background lebih terang saat hover */
 }
 
-/* Gambar Mobil */
-.car-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 0.75rem;
-  margin-bottom: 0.75rem;
-}
-
-/* Info Mobil */
-.car-info {
-  color: #0f172a;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin-bottom: 1rem;
-}
-
+/* Info dalam Card */
 .car-info p {
-  margin: 0.2rem 0;
-  font-weight: 500;
+    margin-bottom: 8px; /* Jarak bawah antar paragraf */
+    line-height: 1.4; /* Tinggi baris teks */
 }
 
-/* Tombol Edit & Delete */
+.car-info p strong {
+    color: #ffffff; /* Warna teks tebal */
+    font-weight: 700; /* Ketebalan font */
+    font-size: 1.1rem; /* Ukuran font */
+}
+
+.car-info p:last-of-type {
+    margin-bottom: 0; /* Hilangkan margin bawah pada paragraf terakhir */
+}
+
+/* Pastikan semua link di dalam card tidak berubah warna saat diklik */
+.car-info a, .car-info a:visited, .car-info a:hover, .car-info a:active {
+    color: inherit; /* Mengikuti warna teks parent */
+    text-decoration: none; /* Tanpa garis bawah */
+}
+
+/* Harga */
+.car-info p:nth-child(2) {
+    font-size: 1.2rem; /* Ukuran font harga */
+    font-weight: 700; /* Ketebalan font harga */
+    color: #ffffff; /* Warna teks harga */
+}
+
+/* Teks "Terakhir diupdate oleh:" */
+.car-info .updater-info {
+    font-size: 0.85rem; /* Ukuran font */
+    color: #b0b0b0; /* Warna teks */
+    margin-top: 10px; /* Jarak atas */
+}
+
+/* Styling Status */
+.status-available {
+    background-color: #28a745; /* Hijau */
+    color: white;
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+.status-maintenance {
+    background-color: #ffc107; /* Kuning */
+    color: #333;
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+.status-sold {
+    background-color: #dc3545; /* Merah */
+    color: white;
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+.status-pending {
+    background-color: #17a2b8; /* Biru muda */
+    color: white;
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+.status-rejected {
+    background-color: #6c757d; /* Abu-abu */
+    color: white;
+    padding: 0.2em 0.6em;
+    border-radius: 0.25em;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+
+/* Aksi di Card (Tombol Edit/Hapus/Approve/Reject) */
 .card-actions {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: space-between;
+    display: flex; /* Menggunakan Flexbox */
+    gap: 10px; /* Jarak antar tombol */
+    margin-top: 15px; /* Jarak atas */
+    justify-content: center; /* Pusatkan tombol secara horizontal */
 }
 
 .card-actions button {
-  flex: 1;
-  background-color: white;
-  color: #1e293b;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.4rem;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+    padding: 8px 15px; /* Padding tombol */
+    border-radius: 6px; /* Sudut membulat */
+    cursor: pointer; /* Kursor pointer saat hover */
+    font-size: 0.9rem; /* Ukuran font */
+    font-weight: 600; /* Ketebalan font */
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease; /* Transisi hover */
+    border: none; /* Tanpa border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan tombol */
+    min-width: 80px; /* Lebar minimal tombol */
+    text-align: center; /* Teks di tengah tombol */
 }
 
-.card-actions button:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
+.btn-edit {
+    background-color: #4a90e2; /* Warna biru */
+    color: white;
 }
 
-/* Footer */
+.btn-edit:hover {
+    background-color: #357bd8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Warna merah */
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-approve {
+    background-color: #28a745; /* Hijau */
+    color: white;
+}
+
+.btn-approve:hover {
+    background-color: #218838;
+}
+
+.btn-reject {
+    background-color: #dc3545; /* Merah */
+    color: white;
+}
+
+.btn-reject:hover {
+    background-color: #c82333;
+}
+
+/* Footer Inventory */
 .inventory-footer {
-  text-align: center;
-  margin-top: 3rem;
-  padding: 1rem;
-  font-size: 0.875rem;
-  color: #64748b;
-  border-top: 1px solid #e2e8f0;
+    padding: 20px; /* Padding footer */
+    text-align: center; /* Teks di tengah */
+    color: #ffffff;    /* DIUBAH: jadi putih */
+    font-size: 0.8rem; /* Ukuran font */
+    margin-top: auto; /* DIUBAH: dari 2rem jadi auto, mendorong footer ke bawah */
 }

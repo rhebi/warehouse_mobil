@@ -16,8 +16,8 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-  "email": "rusli22@gmail.com",
-  "password": "2424"
+  "email": "fajar.manager@gmail.com",
+  "password": "admin123"
 }
 
 ### — 3) REFRESH TOKEN (ambil accessToken baru)
@@ -108,3 +108,18 @@ Content-Type: application/json
 ### — 5) DELETE TRANSACTION (login required)
 DELETE http://localhost:5000/transactions/2
 Authorization: Bearer 
+
+### Test Product Keluar/Masuk
+POST http://localhost:5000/inventory-movements
+Authorization: Bearer 
+Content-Type: application/json
+
+{
+  "product_id": 2,
+  "quantity": 10,
+  "type": "inbound",
+  "reason": "Pembelian dari Supplier ABC",
+  "location_to": "Gudang A Rak 1", 
+  "notes": "Penerimaan batch baru"
+
+}

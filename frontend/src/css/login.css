@@ -12,7 +12,7 @@ body {
 }
 
 .login-container {
-  @apply bg-black text-white max-w-[1360px] mx-auto p-5 flex flex-col min-h-screen justify-between items-center;
+   @apply bg-black text-white p-5 flex flex-col min-h-screen justify-center items-center;
 }
 
 .login-header {
